@@ -6,7 +6,9 @@
         <meta charset="utf-8">
         <title>Passau Explorer</title>
         <meta name="author" content="Fabian Dietrich">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Sammle Abzeichen, die überall in ganz Passau verteilt sind.">
+        <link rel="stylesheet" href="assets/style.css">
         <script src="assets/js/utils.js"></script>
         <script src="assets/js/user.js"></script>
         <script src="assets/js/badge.js"></script>
@@ -15,7 +17,13 @@
 
     <body>
 
+        <div id="mobile-only-notice">Passau Explorer is intended as mobile app only.<br>Please use a mobile device to view this page.</div>
 
+        <main>
+        
+            <h1>Passau Explorer</h1>
+
+        </main>
 
         <script>
 
@@ -35,6 +43,7 @@
                 }
             };
             window.onhashchange();
+            Badge.loadBadges();
 
         </script>
 

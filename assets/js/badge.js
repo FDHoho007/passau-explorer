@@ -7,10 +7,13 @@ const Badge = {
         let meta = JSON.parse(localStorage.getItem("meta") || "{}");
         let badges = {};
         for(let badge_pubKey in index) {
-            badges[badge_pubKey] = {};
+            let collection = index[badge_pubKey];
+            if(!(collection in badges))
+                badges[collection] = {};
+            badges[collection][badge_pubKey] = {};
             if(badge_pubKey in meta)
-                badges[badge_pubKey] = meta[badge_pubKey];
-            badges[badge_pubKey]["collected"] = badge_pubKey in meta;
+                badges[collection][badge_pubKey] = meta[badge_pubKey];
+            badges[collection][badge_pubKey]["collected"] = badge_pubKey in meta;
         }
         return badges;
     },

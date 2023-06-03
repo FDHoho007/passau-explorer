@@ -7,12 +7,36 @@
         <title>Passau Explorer</title>
         <meta name="author" content="Fabian Dietrich">
         <meta name="description" content="Sammle Abzeichen, die überall in ganz Passau verteilt sind.">
+        <script src="assets/js/utils.js"></script>
+        <script src="assets/js/user.js"></script>
+        <script src="assets/js/badge.js"></script>
 
     </head>
 
     <body>
 
-        
+
+
+        <script>
+
+            User.login();
+            window.onhashchange = () => {
+                if(location.hash) {
+                    let hash = location.hash.substring(1);
+                    if(hash.startsWith("admintoken=")) {
+                        let adminToken = hash.substring(11);
+                        User.setAdminToken(adminToken);
+                        location.href = location.origin + location.pathname;
+                    } else {
+                        let badge = hash.split(";");
+                        if(badge.length == 3)
+                            Badge.collectBadge(badge[0], badge[1], badge[2]).then(() => location.href = location.origin + location.pathname);
+                    }
+                }
+            };
+            window.onhashchange();
+
+        </script>
 
     </body>
 

@@ -25,25 +25,66 @@
 
         </main>
 
+        <dialog id="badge-scanned">
+
+            <img src="https://badges.passau-explorer.fs-info.de/svg/default.svg">
+            <p>
+                Herzlichen Glückwunsch. Du hast soeben ein verstecktes Abzeichen gefunden.
+                Dieses wurde zu deiner Sammlung im Passau Explorer hinzugefügt.
+            </p>
+
+        </dialog>
+
+        <dialog id="badge-view">
+
+            <img id="badge-view-img">
+            <div id="badge-view-title"></div>
+            <p id="badge-view-description"></p>
+
+        </dialog>
+
+        <dialog id="help">
+
+            <img src="assets/svg/question.svg">
+            <p>
+                Willkommen beim Passau Explorer.
+            </p>
+
+        </dialog>
+
+        <a id="floating-button">
+            <img src="assets/svg/question.svg">
+        </a>
+
         <script>
 
             User.login();
             window.onhashchange = () => {
                 if(location.hash) {
                     let hash = location.hash.substring(1);
-                    if(hash.startsWith("admintoken=")) {
+                    if(hash.startsWith("found-badge=")) {
+                        document.getElementById("badge-scanned").showModal();
+                        document.getElementById("badge-scanned").onclose = () => {
+                            [...document.querySelectorAll(".collection img")].filter(e => e.getAttribute("publicKey") == hash.substring(12))[0].click();
+                        }
+                    } else if(hash.startsWith("admintoken=")) {
                         let adminToken = hash.substring(11);
                         User.setAdminToken(adminToken);
                         location.href = location.origin + location.pathname;
                     } else {
                         let badge = hash.split(";");
                         if(badge.length == 3)
-                            Badge.collectBadge(badge[0], badge[1], badge[2]).then(() => location.href = location.origin + location.pathname);
+                            Badge.collectBadge(badge[0], badge[1], badge[2]).then(() => {
+                                location.href = location.origin + location.pathname + "#found-badge=" + badge[0];
+                                location.reload();
+                            });
                     }
                 }
             };
             window.onhashchange();
             Badge.loadBadges();
+            [...document.getElementsByTagName("dialog")].forEach(element => element.addEventListener("click", dialogClick));
+            document.getElementById("floating-button").onclick = () => document.getElementById("help").showModal();
 
         </script>
 

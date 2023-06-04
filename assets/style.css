@@ -13,6 +13,10 @@ main { display: none; }
     font-size: 28pt;
 }
 
+html, dialog {
+    background: antiquewhite;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -24,8 +28,8 @@ main h1 {
 }
 
 main .collection {
-    background: grey;
-    border: 3px solid darkgrey;
+    background: navajowhite;
+    border: 3px solid #ffd08a;
     border-radius: 20px;
     margin: 1rem;
     padding: 10px;
@@ -52,4 +56,49 @@ main .collection .content img {
 main .collection .content img:not(.collected) {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
+}
+
+dialog {
+    text-align: center;
+    margin: auto 2rem;
+    padding: 2rem;
+    border-radius: 20px;
+    border: 3px solid navajowhite;
+    outline: none;
+}
+
+dialog img {
+    height: 150px;
+}
+
+#badge-view-title {
+    font-weight: bold;
+    font-size: 16pt;
+    margin-top: 5px;
+}
+
+#help img {
+    filter: brightness(0);
+}
+
+#floating-button {
+    position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0AC;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+#floating-button:active {
+    background-color: rgb(0, 139, 204);
+}
+
+#floating-button img {
+    height: 40px;
+    margin-top: 10px;
 }

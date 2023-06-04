@@ -45,10 +45,16 @@ const Badge = {
             collection_content.classList.add("content");
             for(let badge_public_key in badges[collection]) {
                 let badge_img = document.createElement("img");
+                badge_img.setAttribute("publicKey", badge_public_key);
                 badge_img.src = Badge.HOST + "/svg/" + encodeURIComponent(badge_public_key) + ".svg";
                 if(badges[collection][badge_public_key].collected) {
                     badge_img.classList.add("collected");
-                    badge_img.onclick = () => {};
+                    badge_img.onclick = () => {
+                        document.getElementById("badge-view-img").src = Badge.HOST + "/svg/" + encodeURIComponent(badge_public_key) + ".svg";
+                        document.getElementById("badge-view-title").innerText = badges[collection][badge_public_key].title;
+                        document.getElementById("badge-view-description").innerText = badges[collection][badge_public_key].description;
+                        document.getElementById("badge-view").showModal();
+                    };
                 }
                 else
                     badge_img.onclick = () => {};

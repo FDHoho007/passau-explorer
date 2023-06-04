@@ -18,3 +18,13 @@ function str2ab(str) {
     }
     return buf;
 }
+
+function dialogClick(event) {
+    if(event.target.tagName === 'DIALOG') {
+        let rect = event.target.getBoundingClientRect();
+        let isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+        && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+        if (!isInDialog)
+            event.target.close();
+    }
+}

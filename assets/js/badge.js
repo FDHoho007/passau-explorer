@@ -67,7 +67,8 @@ const Badge = {
                         document.getElementById("badge-view-description").innerText = "Du hast dieses Abzeichen noch nicht gefunden.";
                         document.getElementById("admin-only").style.display = User.adminInfo == null ? "none" : "";
                         document.getElementById("badge-view-write").onclick = () => Badge.writeTag(badge_public_key);
-                        document.getElementById("badge-view-nfc-password").innerText = "NFC Password: " + User.adminInfo[badge_public_key].nfcPassword;
+                        if(User.adminInfo != null)
+                            document.getElementById("badge-view-nfc-password").innerText = "NFC Password: " + User.adminInfo[badge_public_key].nfcPassword;
                         document.getElementById("badge-view").showModal();
                     };
                 collection_content.appendChild(badge_img);

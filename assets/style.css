@@ -54,7 +54,7 @@ main .collection .content img {
     margin: 0.8rem;
 }
 
-main .collection .content img:not(.collected) {
+main .collection .content img:not(.collected), #badge-view-img:not(.collected) {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
 }

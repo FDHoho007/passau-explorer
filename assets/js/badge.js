@@ -51,6 +51,7 @@ const Badge = {
                     badge_img.classList.add("collected");
                     badge_img.onclick = () => {
                         document.getElementById("badge-view-img").src = Badge.HOST + "/svg/" + encodeURIComponent(badge_public_key) + ".svg";
+                        document.getElementById("badge-view-img").classList.add("collected");
                         document.getElementById("badge-view-title").innerText = badges[collection][badge_public_key].title;
                         document.getElementById("badge-view-description").innerText = badges[collection][badge_public_key].description;
                         document.getElementById("badge-view-write").style.display = User.getAdminToken() == null ? "none" : "";

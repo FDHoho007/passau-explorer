@@ -1,3 +1,0 @@
-- admin button
-- admin menu
-- pwa

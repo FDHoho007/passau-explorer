@@ -106,6 +106,9 @@
             [...document.getElementsByTagName("dialog")].forEach(element => element.addEventListener("click", dialogClick));
             document.getElementById("floating-button").onclick = () => document.getElementById("help").showModal();
 
+            if ('serviceWorker' in navigator)
+                navigator.serviceWorker.register("serviceworker.js");
+
         </script>
 
     </body>

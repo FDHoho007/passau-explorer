@@ -78,15 +78,7 @@ dialog img {
     margin-top: 5px;
 }
 
-#help img {
-    filter: brightness(0);
-}
-
-#help p {
-    text-align: justify;
-}
-
-#help button {
+#badge-view-button {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
@@ -102,9 +94,17 @@ dialog img {
     outline: none;
 }
 
-#help button:active {
+#badge-view-button:active {
     background-color: #0062cc;
     border-color: #005cbf;
+}
+
+#help img {
+    filter: brightness(0);
+}
+
+#help p {
+    text-align: justify;
 }
 
 #floating-button {

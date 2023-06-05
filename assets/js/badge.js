@@ -53,15 +53,27 @@ const Badge = {
                         document.getElementById("badge-view-img").src = Badge.HOST + "/svg/" + encodeURIComponent(badge_public_key) + ".svg";
                         document.getElementById("badge-view-title").innerText = badges[collection][badge_public_key].title;
                         document.getElementById("badge-view-description").innerText = badges[collection][badge_public_key].description;
+                        document.getElementById("badge-view-write").style.display = User.getAdminToken() == null ? "none" : "";
+                        document.getElementById("badge-view-write").onclick = () => Badge.writeTag(badge_public_key);
                         document.getElementById("badge-view").showModal();
                     };
                 }
                 else
-                    badge_img.onclick = () => {};
+                    badge_img.onclick = () => {
+                        document.getElementById("badge-view-img").src = Badge.HOST + "/svg/" + encodeURIComponent(badge_public_key) + ".svg";
+                        document.getElementById("badge-view-title").innerText = "?????";
+                        document.getElementById("badge-view-description").innerText = "Du hast dieses Abzeichen noch nicht gefunden.";
+                        document.getElementById("badge-view-write").style.display = User.getAdminToken() == null ? "none" : "";
+                        document.getElementById("badge-view-write").onclick = () => Badge.writeTag(badge_public_key);
+                        document.getElementById("badge-view").showModal();
+                    };
                 collection_content.appendChild(badge_img);
             }
             collection_div.appendChild(collection_content);
             main.appendChild(collection_div);
         }
+    },
+    writeTag: async (public_key) => {
+
     }
 }

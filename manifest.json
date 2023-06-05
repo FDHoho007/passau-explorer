@@ -3,12 +3,12 @@
     "name": "Passau Explorer",
     "icons": [
       {
-        "src": "/assets/png/icons-192-192.png",
+        "src": "/assets/png/icon-192-192.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "/assets/png/icons-512-512.png",
+        "src": "/assets/png/icon-512-512.png",
         "type": "image/png",
         "sizes": "512x512"
       }

@@ -79,8 +79,8 @@ const Badge = {
             return;
         const url = "https://passau-explorer.fs-info.de/#" + public_key + ";" + User.adminInfo[public_key].privateKey + ";" + User.adminInfo[public_key].uuid;
         const records = [{
-            recordType: "website",
-            url: new TextEncoder().encode(url)
+            recordType: "url",
+            data: new TextEncoder().encode(url)
         }];
         const reader = new NDEFReader();
         const abortController = new AbortController();

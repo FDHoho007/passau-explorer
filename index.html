@@ -47,8 +47,14 @@
 
             <img src="assets/svg/question.svg">
             <p>
-                Willkommen beim Passau Explorer.
+                Willkommen beim Passau Explorer. Hierbei handelt es sich um ein studentisches Freizeitprojekt, 
+                bei dem es darum geht in ganz Passau versteckte Abzeichen zu finden. 
+                Es gibt keine Hinweise darauf, wo die einzelnen Abzeichen zu finden sind. 
+                Diese sollen durch aufmerksames Suchen bzw. Zufall gefunden werden. 
+                Bei den Abzeichen handelt es sich um kleine weiße runde NFC Aufkleber. 
+                Um ein Abzeichen einzusammeln, muss der NFC Tag gescannt und der hinterlegte Links geöffnet werden.
             </p>
+            <button>Admin</button>
 
         </dialog>
 
@@ -84,7 +90,10 @@
             window.onhashchange();
             Badge.loadBadges();
             [...document.getElementsByTagName("dialog")].forEach(element => element.addEventListener("click", dialogClick));
-            document.getElementById("floating-button").onclick = () => document.getElementById("help").showModal();
+            document.getElementById("floating-button").onclick = () => {
+                document.getElementById("help").getElementsByTagName("button")[0].style.display = User.getAdminToken() == null ? "none" : "";
+                document.getElementById("help").showModal();
+            }
 
         </script>
 

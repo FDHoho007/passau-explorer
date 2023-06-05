@@ -80,7 +80,7 @@ const Badge = {
         const url = "https://passau-explorer.fs-info.de/#" + public_key + ";" + User.adminInfo[public_key].privateKey + ";" + User.adminInfo[public_key].uuid;
         const records = [{
             recordType: "url",
-            data: new TextEncoder().encode(url)
+            data: url
         }];
         const reader = new NDEFReader();
         const abortController = new AbortController();
@@ -90,8 +90,8 @@ const Badge = {
         try {
             await reader.write({records}, {overwrite: true});
         } catch(e) {
-            alert("NFC Tag konnte nicht beschrieben werden.");
             console.log("error writing tag", e);
+            alert("NFC Tag konnte nicht beschrieben werden.");
         } finally {
             document.getElementById("write-tag").close();
         }

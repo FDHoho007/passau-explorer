@@ -85,7 +85,7 @@ const Badge = {
         const reader = new NDEFReader();
         const abortController = new AbortController();
         reader.scan({signal: abortController.signal});
-        document.getElementById("write-tag").onclose = abortController.abort();
+        document.getElementById("write-tag").onclose = () => abortController.abort("Dialog closed");
         document.getElementById("write-tag").showModal();
         try {
             await reader.write({records}, {overwrite: true});

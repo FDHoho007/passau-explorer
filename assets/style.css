@@ -78,7 +78,7 @@ dialog img {
     margin-top: 5px;
 }
 
-#badge-view-button {
+#badge-view-write {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
@@ -94,7 +94,7 @@ dialog img {
     outline: none;
 }
 
-#badge-view-button:active {
+#badge-view-write:active {
     background-color: #0062cc;
     border-color: #005cbf;
 }

@@ -99,6 +99,12 @@ dialog img {
     border-color: #005cbf;
 }
 
+#badge-view-nfc-password {
+    display: block;
+    margin-top: 15px;
+    font-size: 6pt;
+}
+
 #help img {
     filter: brightness(0);
 }

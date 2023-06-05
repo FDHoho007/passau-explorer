@@ -12,8 +12,20 @@ const User = {
     publicKey: () => {
         return localStorage.getItem("publicKey");
     },
-    sign: () => {
-
+    adminInfo: null,
+    loadAdminInfo: async () => {
+        let adminToken = localStorage.getItem("adminToken");
+        if(adminToken != null) {
+            let result = await fetch(Badge.HOST + "/admin-" + adminToken + ".json");
+            if(result.status != 200) {
+                User.setAdminToken(null);
+                location.reload();
+            } else {
+                User.adminInfo = await result.json();
+                for(let publicKey in User.adminInfo)
+                    User.adminInfo[publicKey].meta = await (await fetch(Badge.HOST + "/meta/" + User.adminInfo[publicKey].uuid + ".json")).json();
+            }
+        }
     },
     getAdminToken: () => {
         return localStorage.getItem("adminToken");

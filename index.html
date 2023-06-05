@@ -59,6 +59,15 @@
 
         </dialog>
 
+        <dialog id="write-tag">
+
+            <img src="assets/svg/nfc.svg">
+            <p>
+                Bitte halte nun den zu schreibenden NFC Tag an dein Gerät.
+            </p>
+
+        </dialog>
+
         <a id="floating-button">
             <img src="assets/svg/question.svg">
         </a>
@@ -66,6 +75,7 @@
         <script>
 
             User.login();
+            User.loadAdminInfo();
             window.onhashchange = () => {
                 if(location.hash) {
                     let hash = location.hash.substring(1);

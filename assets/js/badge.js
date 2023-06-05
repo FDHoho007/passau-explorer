@@ -54,7 +54,7 @@ const Badge = {
                         document.getElementById("badge-view-img").classList.add("collected");
                         document.getElementById("badge-view-title").innerText = badges[collection][badge_public_key].title;
                         document.getElementById("badge-view-description").innerText = badges[collection][badge_public_key].description;
-                        document.getElementById("badge-view-write").style.display = User.getAdminToken() == null ? "none" : "";
+                        document.getElementById("badge-view-write").style.display = User.adminInfo == null ? "none" : "";
                         document.getElementById("badge-view-write").onclick = () => Badge.writeTag(badge_public_key);
                         document.getElementById("badge-view").showModal();
                     };
@@ -62,9 +62,9 @@ const Badge = {
                 else
                     badge_img.onclick = () => {
                         document.getElementById("badge-view-img").src = Badge.HOST + "/svg/" + encodeURIComponent(badge_public_key) + ".svg";
-                        document.getElementById("badge-view-title").innerText = "?????";
+                        document.getElementById("badge-view-title").innerText = User.adminInfo == null ? "?????" : User.adminInfo[badge_public_key].meta.title;
                         document.getElementById("badge-view-description").innerText = "Du hast dieses Abzeichen noch nicht gefunden.";
-                        document.getElementById("badge-view-write").style.display = User.getAdminToken() == null ? "none" : "";
+                        document.getElementById("badge-view-write").style.display = User.adminInfo == null ? "none" : "";
                         document.getElementById("badge-view-write").onclick = () => Badge.writeTag(badge_public_key);
                         document.getElementById("badge-view").showModal();
                     };
@@ -75,6 +75,25 @@ const Badge = {
         }
     },
     writeTag: async (public_key) => {
-
+        if(!User.adminInfo[public_key])
+            return;
+        const url = "https://passau-explorer.fs-info.de/#" + public_key + ";" + User.adminInfo[public_key].privateKey + ";" + User.adminInfo[public_key].uuid;
+        const records = [{
+            recordType: "website",
+            url: new TextEncoder().encode(url)
+        }];
+        const reader = new NDEFReader();
+        const abortController = new AbortController();
+        reader.scan({signal: abortController.signal});
+        document.getElementById("write-tag").onclose = abortController.abort();
+        document.getElementById("write-tag").showModal();
+        try {
+            await reader.write({records}, {overwrite: true});
+        } catch(e) {
+            alert("NFC Tag konnte nicht beschrieben werden.");
+            console.log("error writing tag", e);
+        } finally {
+            document.getElementById("write-tag").close();
+        }
     }
 }

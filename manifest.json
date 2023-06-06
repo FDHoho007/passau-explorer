@@ -17,6 +17,7 @@
     "start_url": "/",
     "background_color": "#faebd7",
     "display": "standalone",
+    "orientation": "portrait",
     "scope": "/",
     "theme_color": "#faebd7",
     "description": "Sammle Abzeichen, die überall in ganz Passau verteilt sind."
